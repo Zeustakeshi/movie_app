@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-slate-900
+            font-body
+            text-white
+            overflow-x-hidden;
+    }
+}
+
+@layer components {
+    $primary: #f62682;
+    $content-center-w: 1200px;
+    $side-bar-w: calc((100vw - #{$content-center-w}) / 2 - 20px);
+    $content-w: calc(100vw - #{$side-bar-w} - 12px);
+
+    .page-container {
+        max-width: $content-center-w;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .page-container-left {
+        max-width: $content-w;
+        margin-right: auto;
+    }
+
+    .page-container-right {
+        max-width: $content-w;
+        margin-left: auto;
+    }
+
+    .page-side-bar {
+        position: fixed;
+        width: $side-bar-w;
+        padding: 80px 10px;
+        height: 100%;
+        flex: 1;
+    }
+
+    .page-menu-mobile {
+        position: fixed;
+        width: 100vw;
+        flex: 1;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+    }
+
+    .movie-list .swiper-slide {
+        width: 300px;
+    }
+
+    .banner .swiper {
+        height: 100%;
+    }
+
+    .movie-detail.swiper {
+        position: absolute !important;
+    }
+
+    .content-overflow-hiden-scroll {
+        overflow: auto;
+        overflow-x: hidden;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+        height: 80vh;
+        width: 100%;
+        &::-webkit-scrollbar {
+            height: 0 !important;
+            width: 0 !important;
+            displacentery: none;
+        }
+    }
+
+    .skeleton {
+        background-color: rgb(51, 65, 85);
+        background-image: linear-gradient(
+            100deg,
+            rgb(51, 65, 85) 8%,
+            rgb(68, 82, 103) 18%,
+            rgb(51, 65, 85) 33%
+        );
+        background-size: 200% 100%;
+        animation: 1.5s shine linear infinite;
+    }
+
+    @keyframes shine {
+        to {
+            background-position: -200%;
+        }
+    }
+}
+
+.content-overflow-limitline {
+    --line: 7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line);
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f62682 !important;
+    padding: 4px;
+}
