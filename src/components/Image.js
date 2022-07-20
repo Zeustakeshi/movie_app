@@ -1,6 +1,12 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
+
 function Image({ src, alt, ...props }, ref) {
     const [failBack, setFallback] = useState(false);
+
+    useEffect(() => {
+        setFallback(false);
+    }, [src]);
+
     const handleError = () => {
         setFallback(true);
     };

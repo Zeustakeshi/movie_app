@@ -2,6 +2,7 @@ import React from "react";
 import "./VoteAverage.scss";
 
 const VoteAverage = ({
+    className,
     isLoading,
     voteAverage,
     size = "40px",
@@ -18,7 +19,7 @@ const VoteAverage = ({
     };
     const average = cacularVoteAverage(voteAverage);
     return (
-        <span className="flex justify-center items-center">
+        <span className={`flex justify-center items-center ${className}`}>
             {isLoading ? (
                 <div
                     className="pie animate skeleton"
@@ -34,7 +35,7 @@ const VoteAverage = ({
                 </div>
             ) : (
                 <div
-                    className="pie animate"
+                    className={`pie animate `}
                     style={{
                         "--p": average,
                         "--b": bold,

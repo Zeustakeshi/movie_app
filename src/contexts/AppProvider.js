@@ -1,10 +1,15 @@
 import React, { createContext, useContext, useState } from "react";
 import useWindowSize from "../hooks/useWindowSize";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const AppContext = createContext();
 
 const AppProvider = (props) => {
-    const [watchLists, setWatchLists] = useState([]);
+    const [storedWatchListValue, setStoredWatchListValue] = useLocalStorage(
+        "WatchList",
+        []
+    );
+    const [watchLists, setWatchLists] = useState(storedWatchListValue);
     const [popularList, setPopularList] = useState([]);
     const [language, setLanguage] = useState("en-US");
 
@@ -19,6 +24,7 @@ const AppProvider = (props) => {
         setWatchLists,
         setPopoularList: setPopularList,
         setLanguage,
+        setStoredWatchListValue,
     };
 
     return <AppContext.Provider value={value} {...props}></AppContext.Provider>;

@@ -17,6 +17,7 @@ const BannerMobile = ({ detail, type }) => {
     return (
         <section className="banner h-[290px] page-container mb-10 overflow-hidden max-w-[100vw]">
             <Swiper
+                loop={true}
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{

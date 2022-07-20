@@ -28,7 +28,8 @@ const Watchlists = () => {
 };
 
 const WatchItem = ({ movieInfo }) => {
-    const { watchLists, setWatchLists } = useAppContext();
+    const { watchLists, setWatchLists, setStoredWatchListValue } =
+        useAppContext();
     const ref = useRef();
     const navigate = useNavigate();
 
@@ -37,7 +38,11 @@ const WatchItem = ({ movieInfo }) => {
     }, [watchLists]);
 
     const handleRemoveWatchLists = (id) => {
-        setWatchLists((prev) => prev.filter((item) => item.id !== id));
+        setWatchLists((prev) => {
+            const newWatchList = prev.filter((item) => item.id !== id);
+            setStoredWatchListValue(newWatchList);
+            return newWatchList;
+        });
     };
 
     return (

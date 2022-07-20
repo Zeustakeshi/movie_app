@@ -69,7 +69,7 @@ const SearchContent = ({ searchValue, itemsPerPage = 1 }) => {
 const SearchItem = ({ item, isLoading }) => {
     return (
         <div className="w-full flex gap-2 justify-start items-center h-[160px] py-3 px-4 rounded-xl bg-slate-800">
-            <div className="relative w-[30%] h-full rounded-[inherit]">
+            <div className="relative w-[30%] max-w-[100px] h-full rounded-[inherit]">
                 {isLoading ? (
                     <div className="skeleton w-full h-full rounded-[inherit]"></div>
                 ) : (
@@ -92,7 +92,7 @@ const SearchItem = ({ item, isLoading }) => {
                     </span>
                 </ButtonWatchNow>
             </div>
-            <div className="bg-slate-700 bg-opacity-50 p-2 rounded-[inherit] w-[70%] h-full flex flex-col gap-2 justify-start items-start text-bold ">
+            <div className="bg-slate-700 bg-opacity-50 p-2 rounded-[inherit] flex-1 w-[70%] h-full flex flex-col gap-2 justify-start items-start text-bold ">
                 {isLoading ? (
                     <div className="skeleton w-[80%] h-4 rounded-full"></div>
                 ) : (

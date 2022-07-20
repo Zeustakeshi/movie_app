@@ -13,7 +13,6 @@ import "swiper/css/effect-cube";
 
 // import required modules
 import { Pagination, EffectCube, Autoplay, EffectCoverflow } from "swiper";
-import ButtonWatchNow from "../../../components/button/ButtonWatchNow";
 import Image from "../../../components/Image";
 
 const convertDate = (date) => {
@@ -227,12 +226,13 @@ const MovieSimilar = () => {
                         delay: 2000,
                         disableOnInteraction: false,
                     }}
+                    loop={true}
                     pagination={true}
                     modules={[EffectCoverflow, Pagination, Autoplay]}
                 >
-                    {movies?.map((movie) => {
+                    {movies?.map((movie, index) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={movie.id || index}>
                                 <MovieCard movieInfo={movie} />
                             </SwiperSlide>
                         );
