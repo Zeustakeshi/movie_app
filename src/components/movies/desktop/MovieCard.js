@@ -91,9 +91,6 @@ MovieCard.propTypes = {
         vote_average: PropTypes.number,
         id: PropTypes.number,
     }),
-
-    movieInfo: PropTypes.object,
-
     isLoading: PropTypes.bool,
 };
 

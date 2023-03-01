@@ -7,7 +7,7 @@ const Header = ({ setSearchValue }) => {
 
     useEffect(() => {
         setSearchValue(debounce);
-    }, [debounce]);
+    }, [debounce, setSearchValue]);
 
     return (
         <div className="flex justify-center items-center p-5">

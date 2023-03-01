@@ -1,14 +1,13 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import MovieCard from "./MovieCard";
-import useGetMovieData from "../../../hooks/useGetMovieData";
 import PropTypes from "prop-types";
+import React from "react";
 import { withErrorBoundary } from "react-error-boundary";
+import { Swiper, SwiperSlide } from "swiper/react";
+import useGetMovieData from "../../../hooks/useGetMovieData";
+import MovieCard from "./MovieCard";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 // import required modules
-import { EffectCoverflow } from "swiper";
 
 const MovieList = ({ type = "now_playing", detail }) => {
     const { data } = useGetMovieData(`${detail}/${type}`);

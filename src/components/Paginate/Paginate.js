@@ -10,7 +10,7 @@ const Paginate = ({ data, itemsPerPage, setNextPage }) => {
     useEffect(() => {
         if (!data || !data.total_pages) return;
         setPageCount(Math.ceil(data.total_pages / itemsPerPage));
-    }, [itemOffset, data]);
+    }, [itemOffset, data, itemsPerPage]);
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % data.total_pages;

@@ -67,6 +67,7 @@ const ButtonWatchTrailer = ({ movieId, disable }) => {
                     <h3 className="font-bold text-xl mb-5">Trailer</h3>
                     <div className="w-full aspect-video">
                         <iframe
+                            title="video"
                             className="w-full h-full object-fill"
                             width="864"
                             height="486"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ButtonWatchNow from "../../../components/button/ButtonWatchNow";
 import Image from "../../../components/Image";
-import MovieCard from "../../../components/movies/mobile/MovieCard";
 import Paginate from "../../../components/Paginate/Paginate";
 import VoteAverage from "../../../components/voteAverage/VoteAverage";
 import useGetMovieData from "../../../hooks/useGetMovieData";

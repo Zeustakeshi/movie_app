@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
+import React from "react";
 import { useAppContext } from "../../contexts/AppProvider";
 import Button from "./Button";
-import PropTypes from "prop-types";
 
 const ButtonAddWatchList = ({
     movieInfo,
