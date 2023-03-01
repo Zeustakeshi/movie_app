@@ -26,10 +26,7 @@ function App() {
     return (
         <Suspense fallback={<></>}>
             <Routes>
-                <Route
-                    path="/movie_app"
-                    element={<Navigate to="/home" replace />}
-                />
+                <Route path="/" element={<Navigate to="/home" replace />} />
                 <Route element={isMobile ? <MainMobile /> : <MainDesktop />}>
                     <Route
                         path="/home"
