@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useDebounce from "../../../hooks/useDebounce";
 
-const Header = ({ setSearchValue }) => {
+interface IHeader {
+    setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Header: React.FC<IHeader> = ({ setSearchValue }) => {
     const [inputSearch, setInputSearch] = useState("");
     const debounce = useDebounce(inputSearch, 800);
 

@@ -8,9 +8,11 @@ import { Autoplay, Pagination, EffectCreative } from "swiper";
 import Image from "../Image";
 import ButtonWatchNow from "../button/ButtonWatchNow";
 import VoteAverage from "../voteAverage/VoteAverage";
+import { IMoive } from "../../interfaces/Movie.interface";
+import { IonIcon } from "@ionic/react";
 
 const WatchlistMobile = () => {
-    const { watchLists: data } = useAppContext();
+    const { watchLists: data }: { watchLists: IMoive[] } = useAppContext();
 
     return (
         <div className="mb-8 mt-5 ">
@@ -56,11 +58,11 @@ const WatchlistMobile = () => {
     );
 };
 
-const WatchItem = ({ movieInfo }) => {
+const WatchItem = ({ movieInfo }: { movieInfo: IMoive }) => {
     const { setWatchLists, setStoredWatchListValue } = useAppContext();
-    const handleRemoveWatchLists = (id) => {
-        setWatchLists((prev) => {
-            const newWatchList = prev.filter((item) => item.id !== id);
+    const handleRemoveWatchLists = (id: number) => {
+        setWatchLists((prev: IMoive[]) => {
+            const newWatchList = prev.filter((item: IMoive) => item.id !== id);
             setStoredWatchListValue(newWatchList);
             return newWatchList;
         });

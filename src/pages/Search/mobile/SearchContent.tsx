@@ -1,11 +1,21 @@
+import { IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import ButtonWatchNow from "../../../components/button/ButtonWatchNow";
 import Image from "../../../components/Image";
 import Paginate from "../../../components/Paginate/Paginate";
 import VoteAverage from "../../../components/voteAverage/VoteAverage";
 import useGetMovieData from "../../../hooks/useGetMovieData";
+import { IMoive } from "../../../interfaces/Movie.interface";
 
-const SearchContent = ({ searchValue, itemsPerPage = 1 }) => {
+interface ISearchContent {
+    searchValue: string;
+    itemsPerPage?: number;
+}
+
+const SearchContent: React.FC<ISearchContent> = ({
+    searchValue,
+    itemsPerPage = 1,
+}) => {
     const [nextPage, setNextPage] = useState(1);
     const [url, setUrl] = useState({
         path: "",
@@ -31,7 +41,7 @@ const SearchContent = ({ searchValue, itemsPerPage = 1 }) => {
 
     const { data, error } = useGetMovieData(url.path, url.query, url.page);
 
-    const movies = data?.results || [];
+    const movies: IMoive[] = data?.results || [];
 
     return (
         <div className="flex flex-col justify-center items-start gap-5">
@@ -65,7 +75,12 @@ const SearchContent = ({ searchValue, itemsPerPage = 1 }) => {
     );
 };
 
-const SearchItem = ({ item, isLoading }) => {
+interface ISearchItem {
+    item?: IMoive;
+    isLoading?: boolean;
+}
+
+const SearchItem: React.FC<ISearchItem> = ({ item, isLoading }) => {
     return (
         <div className="w-full flex gap-2 justify-start items-center h-[160px] py-3 px-4 rounded-xl bg-slate-800">
             <div className="relative w-[30%] max-w-[100px] h-full rounded-[inherit]">
@@ -74,7 +89,7 @@ const SearchItem = ({ item, isLoading }) => {
                 ) : (
                     <Image
                         src={`https://image.tmdb.org/t/p/w780/${
-                            item.poster_path || item.backdrop_path
+                            item?.poster_path || item?.backdrop_path
                         }`}
                         alt=""
                         className="w-full h-full object-fill rounded-[inherit]"
@@ -96,7 +111,7 @@ const SearchItem = ({ item, isLoading }) => {
                     <div className="skeleton w-[80%] h-4 rounded-full"></div>
                 ) : (
                     <h4 className="font-bold text-base text-left p-1 w-full overflow-hidden overflow-ellipsis whitespace-nowrap">
-                        {item.title}
+                        {item?.title}
                     </h4>
                 )}
                 <div className="flex justify-center items-center w-full h-full ">

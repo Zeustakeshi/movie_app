@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import ReactPaginate from "react-paginate";
 import PropTypes from "prop-types";
-const Paginate = ({ data, itemsPerPage, setNextPage }) => {
+import { IonIcon } from "@ionic/react";
+
+interface IPaginate {
+    data: any;
+    itemsPerPage: number;
+    setNextPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Paginate: React.FC<IPaginate> = ({ data, itemsPerPage, setNextPage }) => {
     const [pageCount, setPageCount] = useState(0);
 
     const [itemOffset, setItemOffset] = useState(0);
@@ -12,7 +20,7 @@ const Paginate = ({ data, itemsPerPage, setNextPage }) => {
         setPageCount(Math.ceil(data.total_pages / itemsPerPage));
     }, [itemOffset, data, itemsPerPage]);
 
-    const handlePageClick = (event) => {
+    const handlePageClick = (event: any) => {
         const newOffset = (event.selected * itemsPerPage) % data.total_pages;
         setItemOffset(newOffset);
         setNextPage(event.selected + 1);
@@ -29,7 +37,6 @@ const Paginate = ({ data, itemsPerPage, setNextPage }) => {
             pageRangeDisplayed={2}
             pageCount={pageCount}
             previousLabel={<IonIcon name="chevron-back-outline"></IonIcon>}
-            renderOnZeroPageCount={null}
             className="flex justify-center items-center gap-[5px] w-full max-w-[100vw] overflow-hidden"
             pageClassName="rounded-sm font-bold cursor-pointer hover:bg-primary transition-all bg-slate-800"
             pageLinkClassName="flex justify-center items-center p-1 md:py-2 md:px-3 text-[12px] md:text-base"

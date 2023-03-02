@@ -9,7 +9,7 @@ const SearchPage = () => {
     return (
         <div className="flex-1 flex flex-col gap-4 page-container-right p-5 ">
             <Header setSearchValue={setSearchValue} />
-            <SearchContent searchValue={searchValue} />
+            <SearchContent searchValue={searchValue || ""} />
         </div>
     );
 };

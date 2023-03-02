@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../../../components/movies/desktop/MovieCard";
 import Paginate from "../../../components/Paginate/Paginate";
 import useGetMovieData from "../../../hooks/useGetMovieData";
+import { IMoive } from "../../../interfaces/Movie.interface";
 
-const SearchContent = ({ searchValue, itemsPerPage = 1 }) => {
+interface ISearchContent {
+    searchValue: string;
+    itemsPerPage?: number;
+}
+
+const SearchContent: React.FC<ISearchContent> = ({
+    searchValue,
+    itemsPerPage = 1,
+}) => {
     const [nextPage, setNextPage] = useState(1);
     const [url, setUrl] = useState({
         path: "",
@@ -29,7 +38,7 @@ const SearchContent = ({ searchValue, itemsPerPage = 1 }) => {
 
     const { data, error } = useGetMovieData(url.path, url.query, url.page);
 
-    const movies = data?.results || [];
+    const movies: IMoive[] = data?.results || [];
 
     return (
         <div className="flex flex-col justify-center items-start gap-5">

@@ -7,23 +7,19 @@ import { useAppContext } from "./contexts/AppProvider";
 
 const HomeDesktop = lazy(() => import("./pages/Home/desktop/HomePage"));
 const HomeMobile = lazy(() => import("./pages/Home/mobile/HomePage"));
-// const SearchPageDesktop = lazy(
-//     () => import("./pages/Search/desktop/SearchPage")
-// );
-// const SearchPageMobile = lazy(() => import("./pages/Search/mobile/SearchPage"));
+const SearchPageDesktop = lazy(
+    () => import("./pages/Search/desktop/SearchPage")
+);
+const SearchPageMobile = lazy(() => import("./pages/Search/mobile/SearchPage"));
 const MovieDetailDesktop = lazy(
     () => import("./pages/MovieDetail/desktop/MovieDetail")
 );
 const MovieDetailMobile = lazy(
     () => import("./pages/MovieDetail/mobile/MovieDetail")
 );
-// const UserMobile = lazy(() => import("./pages/User/mobile/UserPage"));
-// const UserDestop = lazy(() => import("./pages/User/desktop/UserPage"));
-// const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
-
-// const RegisterDesktop = lazy(
-//     () => import("./pages/Auth/Register/Desktop/Register")
-// );
+const UserMobile = lazy(() => import("./pages/User/mobile/UserPage"));
+const UserDestop = lazy(() => import("./pages/User/desktop/UserPage"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 
 function App() {
     const { isMobile } = useAppContext();
@@ -47,7 +43,7 @@ function App() {
                         }
                     />
                 </Route>
-                {/* <Route element={isMobile ? <MainMobile /> : <MainDesktop />}>
+                <Route element={isMobile ? <MainMobile /> : <MainDesktop />}>
                     <Route
                         path="/user"
                         element={isMobile ? <UserMobile /> : <UserDestop />}
@@ -65,7 +61,7 @@ function App() {
                         }
                     />
                 </Route>
-                <Route path="*" element={<NotFound />}></Route> */}
+                <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </Suspense>
     );
