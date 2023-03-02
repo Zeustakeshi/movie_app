@@ -24,11 +24,11 @@ const Paginate = ({ data, itemsPerPage, setNextPage }) => {
                     ...
                 </div>
             }
-            nextLabel={<ion-icon name="chevron-forward-outline"></ion-icon>}
+            nextLabel={<IonIcon name="chevron-forward-outline"></IonIcon>}
             onPageChange={handlePageClick}
             pageRangeDisplayed={2}
             pageCount={pageCount}
-            previousLabel={<ion-icon name="chevron-back-outline"></ion-icon>}
+            previousLabel={<IonIcon name="chevron-back-outline"></IonIcon>}
             renderOnZeroPageCount={null}
             className="flex justify-center items-center gap-[5px] w-full max-w-[100vw] overflow-hidden"
             pageClassName="rounded-sm font-bold cursor-pointer hover:bg-primary transition-all bg-slate-800"

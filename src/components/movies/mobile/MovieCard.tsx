@@ -1,20 +1,21 @@
+import { IonIcon } from "@ionic/react";
 import React from "react";
-import { useAppContext } from "../../../contexts/AppProvider";
-import ButtonAddWatchList from "../../button/ButtonAddWatchList";
-import PropTypes from "prop-types";
 import { withErrorBoundary } from "react-error-boundary";
+import { useAppContext } from "../../../contexts/AppProvider";
+import { IMovieCard } from "../../../interfaces/Movie.interface";
+import ButtonAddWatchList from "../../button/ButtonAddWatchList";
 import ButtonWatchNow from "../../button/ButtonWatchNow";
-import VoteAverage from "../../voteAverage/VoteAverage";
 import Image from "../../Image";
+import VoteAverage from "../../voteAverage/VoteAverage";
 
-const convertDate = (date) => {
+const convertDate = (date: any) => {
     if (!date) return;
     const [year, month, day] = date.split("-");
 
     return [day, month, year].join("-");
 };
 
-const MovieCard = ({ movieInfo, isLoading }) => {
+const MovieCard: React.FC<IMovieCard> = ({ movieInfo, isLoading }) => {
     const { watchLists } = useAppContext();
 
     return (
@@ -27,7 +28,7 @@ const MovieCard = ({ movieInfo, isLoading }) => {
                 <div className="relative w-full h-[380px]  rounded-[inherit]">
                     <Image
                         src={`https://image.tmdb.org/t/p/w780/${
-                            movieInfo.poster_path || movieInfo.backdrop_path
+                            movieInfo?.poster_path || movieInfo?.backdrop_path
                         }`}
                         alt=""
                         className="w-full h-full  rounded-[inherit] object-cover object-top"
@@ -38,7 +39,7 @@ const MovieCard = ({ movieInfo, isLoading }) => {
                         disable={isLoading}
                     >
                         <span className="flex items-center justify-center text-3xl">
-                            <ion-icon name="play-circle"></ion-icon>
+                            <IonIcon name="play-circle"></IonIcon>
                         </span>
                     </ButtonWatchNow>
                 </div>
@@ -48,7 +49,7 @@ const MovieCard = ({ movieInfo, isLoading }) => {
                     <span className="skeleton w-full h-[10px] rounded-xl my-1 mt-2"></span>
                 ) : (
                     <h3 className="font-bold text-lg text-left w-full my-1 mt-2 overflow-hidden overflow-ellipsis whitespace-nowrap">
-                        {movieInfo.title || movieInfo.name}
+                        {movieInfo?.title || movieInfo?.name}
                     </h3>
                 )}
                 <div className="flex justify-between items-center text-gray-400 w-full mb-7 text-sm">
@@ -56,8 +57,8 @@ const MovieCard = ({ movieInfo, isLoading }) => {
                         <span className="skeleton w-[60px] h-[10px] rounded-xl my-3"></span>
                     ) : (
                         <span>
-                            {convertDate(movieInfo.release_date) ||
-                                convertDate(movieInfo.first_air_date)}
+                            {convertDate(movieInfo?.release_date) ||
+                                convertDate(movieInfo?.first_air_date)}
                         </span>
                     )}
                     <VoteAverage
@@ -77,20 +78,6 @@ const MovieCard = ({ movieInfo, isLoading }) => {
             />
         </div>
     );
-};
-
-MovieCard.propTypes = {
-    movieInfo: PropTypes.shape({
-        poster_path: PropTypes.string,
-        backdrop_path: PropTypes.string,
-        title: PropTypes.string,
-        name: PropTypes.string,
-        release_date: PropTypes.string,
-        first_air_date: PropTypes.string,
-        vote_average: PropTypes.number,
-        id: PropTypes.number,
-    }),
-    isLoading: PropTypes.bool,
 };
 
 function FallbackComponent() {

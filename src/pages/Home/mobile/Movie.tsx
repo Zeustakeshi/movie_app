@@ -1,10 +1,14 @@
 import React from "react";
 import { withErrorBoundary } from "react-error-boundary";
-import PropTypes from "prop-types";
 import BannerMobile from "../../../components/banner/mobile/Banner";
 import MovieList from "../../../components/movies/mobile/MovieList";
+interface IMovieProps {
+    detail: string;
+    banner: string;
+    type: { title: string; type: string }[];
+}
 
-const Movie = ({
+const Movie: React.FC<IMovieProps> = ({
     detail = "movie",
     banner = "upcoming",
     type = [
@@ -28,17 +32,6 @@ const Movie = ({
             ))}
         </>
     );
-};
-
-Movie.propTypes = {
-    detail: PropTypes.string,
-    banner: PropTypes.string,
-    type: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired,
-        })
-    ),
 };
 
 function FallbackComponent() {

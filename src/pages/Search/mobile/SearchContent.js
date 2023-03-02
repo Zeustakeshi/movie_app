@@ -87,7 +87,7 @@ const SearchItem = ({ item, isLoading }) => {
                     disable={isLoading}
                 >
                     <span className="flex items-center justify-center text-3xl">
-                        <ion-icon name="play-circle"></ion-icon>
+                        <IonIcon name="play-circle"></IonIcon>
                     </span>
                 </ButtonWatchNow>
             </div>

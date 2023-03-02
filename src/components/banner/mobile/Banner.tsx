@@ -8,11 +8,17 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 
 import { Autoplay, EffectCreative } from "swiper";
+import { IMoive } from "../../../interfaces/Movie.interface";
 
-const BannerMobile = ({ detail, type }) => {
+interface IBannerProps {
+    detail: string;
+    type: string;
+}
+
+const BannerMobile: React.FC<IBannerProps> = ({ detail, type }) => {
     const { data } = useGetMovieData(`${detail}/${type}`);
 
-    const movies = data?.results || [];
+    const movies: IMoive[] = data?.results || [];
 
     return (
         <section className="banner h-[290px] page-container mb-10 overflow-hidden max-w-[100vw]">

@@ -1,20 +1,20 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import MovieCard from "./MovieCard";
-import useGetMovieData from "../../../hooks/useGetMovieData";
-import PropTypes from "prop-types";
 import { withErrorBoundary } from "react-error-boundary";
+import { Swiper, SwiperSlide } from "swiper/react";
+import useGetMovieData from "../../../hooks/useGetMovieData";
+import MovieCard from "./MovieCard";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 // import required modules
 import { EffectCoverflow } from "swiper";
+import { IMoive, IMovieList } from "../../../interfaces/Movie.interface";
 
-const MovieList = ({ type = "now_playing", detail }) => {
+const MovieList: React.FC<IMovieList> = ({ type = "now_playing", detail }) => {
     const { data } = useGetMovieData(`${detail}/${type}`);
 
-    const movies = data?.results || [];
+    const movies: IMoive[] = data?.results || [];
 
     return (
         <div className="movie-list w-full overflow-hidden ">
@@ -49,11 +49,6 @@ const MovieList = ({ type = "now_playing", detail }) => {
             </Swiper>
         </div>
     );
-};
-
-MovieList.propTypes = {
-    type: PropTypes.string,
-    detail: PropTypes.string,
 };
 
 function FallbackComponent() {

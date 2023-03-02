@@ -2,10 +2,6 @@ import useSWR from "swr";
 import { API_KEY } from "../config";
 import { useAppContext } from "../contexts/AppProvider";
 
-interface FetcherArgs {
-    url: string;
-}
-
 const fetcher = (...args: any) => {
     return fetch(args).then((res) => res.json());
 };

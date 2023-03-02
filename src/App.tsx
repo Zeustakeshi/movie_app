@@ -6,7 +6,7 @@ import MainMobile from "./components/layout/mobile/MainMobile";
 import { useAppContext } from "./contexts/AppProvider";
 
 const HomeDesktop = lazy(() => import("./pages/Home/desktop/HomePage"));
-// const HomeMobile = lazy(() => import("./pages/Home/mobile/HomePage"));
+const HomeMobile = lazy(() => import("./pages/Home/mobile/HomePage"));
 // const SearchPageDesktop = lazy(
 //     () => import("./pages/Search/desktop/SearchPage")
 // );
@@ -34,8 +34,7 @@ function App() {
                 <Route element={isMobile ? <MainMobile /> : <MainDesktop />}>
                     <Route
                         path="/home"
-                        // element={isMobile ? <HomeMobile /> : <HomeDesktop />}
-                        element={<HomeDesktop />}
+                        element={isMobile ? <HomeMobile /> : <HomeDesktop />}
                     />
                     {/* <Route
                         path="/home/:movieId"

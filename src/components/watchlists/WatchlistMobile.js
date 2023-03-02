@@ -73,7 +73,7 @@ const WatchItem = ({ movieInfo }) => {
                 }}
                 className="absolute z-10 top-2 right-2 p-3 cursor-pointer flex justify-center items-center bg-slate-500 rounded-full text-white bg-opacity-30  transition-all"
             >
-                <ion-icon name="close"></ion-icon>
+                <IonIcon name="close"></IonIcon>
             </span>
             <div className="relative w-full h-full z-0 rounded-[inherit]">
                 <Image

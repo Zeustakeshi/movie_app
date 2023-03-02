@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Movie from "./Movie";
 import Header from "../Header";
+import Movie from "./Movie";
 
-const dataMovieList = [
+interface IDataMovieType {
+    title: "now playing" | "Top Rated" | "Airing Today" | "On The Air";
+    type: "now_playing" | "top_rated" | "airing_today" | "on_the_air";
+}
+
+interface IDataMovie {
+    detail: string;
+    banner: "upcoming" | "popular";
+    type: IDataMovieType[];
+}
+
+const dataMovieList: IDataMovie[] = [
     {
         detail: "movie",
         banner: "upcoming",
@@ -25,9 +36,9 @@ const dataMovieList = [
     },
 ];
 
-const HomeContent = () => {
+const HomeContent: React.FC = () => {
     const [movieType, setMovieType] = useState("movie");
-    const [movieInfo, setMovieInfo] = useState({});
+    const [movieInfo, setMovieInfo] = useState<IDataMovie>();
 
     useEffect(() => {
         const info = dataMovieList.filter(
@@ -39,11 +50,13 @@ const HomeContent = () => {
     return (
         <div className="flex flex-col">
             <Header movieType={movieType} setMovieType={setMovieType} />
-            <Movie
-                detail={movieInfo.detail}
-                banner={movieInfo.banner}
-                type={movieInfo.type}
-            />
+            {movieInfo && (
+                <Movie
+                    detail={movieInfo.detail}
+                    banner={movieInfo.banner}
+                    type={movieInfo.type}
+                />
+            )}
         </div>
     );
 };
