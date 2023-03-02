@@ -14,20 +14,30 @@ import "swiper/css/effect-cube";
 // import required modules
 import { Pagination, EffectCube, Autoplay, EffectCoverflow } from "swiper";
 import Image from "../../../components/Image";
+import { IMoive } from "../../../interfaces/Movie.interface";
 
-const convertDate = (date) => {
+const convertDate = (date: any) => {
     if (!date) return;
     const [year, month, day] = date.split("-");
 
     return [day, month, year].join("-");
 };
 
+interface ICustomStyles extends React.CSSProperties {
+    "--p"?: number;
+    "--b"?: string;
+    "--w"?: string;
+    "--text"?: string;
+    "--c"?: string;
+    "--line"?: string;
+}
+
 const MovieDetail = () => {
     const { movieId } = useParams();
 
     const { data } = useGetMovieData(`movie/${movieId}`);
 
-    if (!data) return;
+    if (!data) return <></>;
     const {
         backdrop_path,
         poster_path,
@@ -36,8 +46,10 @@ const MovieDetail = () => {
         overview,
         release_date,
         vote_average,
-    } = data;
-
+    }: IMoive = data;
+    const customStyles: ICustomStyles = {
+        "--line": "9",
+    };
     return (
         <div className="w-[100vw]">
             <div className="relative rounded-xl h-[360px] mb-10">
@@ -82,9 +94,7 @@ const MovieDetail = () => {
                             <h3 className="my-3 font-bold text-xl">Overview</h3>
                             <p
                                 className="text-justify text-base leading-relaxed content-overflow-limitline "
-                                style={{
-                                    "--line": "9",
-                                }}
+                                style={customStyles}
                             >
                                 {overview || "no overview"}
                             </p>
@@ -136,12 +146,18 @@ const MovieDetail = () => {
     );
 };
 
+interface ICast {
+    id?: string | number;
+    profile_path?: string;
+    name?: string;
+}
+
 const MovieCredits = () => {
     const { movieId } = useParams();
     const { data } = useGetMovieData(`movie/${movieId}/credits`);
-    if (!data || !data.cast || data.cast.length <= 0) return;
+    if (!data || !data.cast || data.cast.length <= 0) return <></>;
 
-    const { cast } = data;
+    const { cast }: { cast: ICast[] } = data;
 
     return (
         <>
@@ -174,7 +190,7 @@ const MovieVideos = () => {
         <div className="py-10 mt-10">
             <h2 className="text-center text-2xl mb-10 font-bold">Trailers</h2>
 
-            {results.slice(0, 3).map((item) => (
+            {results.slice(0, 3).map((item: any) => (
                 <div key={item.id} className="w-full mt-10">
                     <h3 className="font-bold text-xl mb-5">{item.name}</h3>
                     <div className="w-full aspect-video">
@@ -202,7 +218,7 @@ const MovieSimilar = () => {
 
     if (!data || !data.results || data.results.length <= 0) return null;
 
-    const { results: movies } = data;
+    const { results: movies }: { results: IMoive[] } = data;
 
     return (
         <div className="mt-10">

@@ -11,12 +11,12 @@ const HomeMobile = lazy(() => import("./pages/Home/mobile/HomePage"));
 //     () => import("./pages/Search/desktop/SearchPage")
 // );
 // const SearchPageMobile = lazy(() => import("./pages/Search/mobile/SearchPage"));
-// const MovieDetailDesktop = lazy(
-//     () => import("./pages/MovieDetail/desktop/MovieDetail")
-// );
-// const MovieDetailMobile = lazy(
-//     () => import("./pages/MovieDetail/mobile/MovieDetail")
-// );
+const MovieDetailDesktop = lazy(
+    () => import("./pages/MovieDetail/desktop/MovieDetail")
+);
+const MovieDetailMobile = lazy(
+    () => import("./pages/MovieDetail/mobile/MovieDetail")
+);
 // const UserMobile = lazy(() => import("./pages/User/mobile/UserPage"));
 // const UserDestop = lazy(() => import("./pages/User/desktop/UserPage"));
 // const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
@@ -36,7 +36,7 @@ function App() {
                         path="/home"
                         element={isMobile ? <HomeMobile /> : <HomeDesktop />}
                     />
-                    {/* <Route
+                    <Route
                         path="/home/:movieId"
                         element={
                             isMobile ? (
@@ -45,7 +45,7 @@ function App() {
                                 <MovieDetailDesktop />
                             )
                         }
-                    /> */}
+                    />
                 </Route>
                 {/* <Route element={isMobile ? <MainMobile /> : <MainDesktop />}>
                     <Route

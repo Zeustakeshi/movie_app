@@ -5,13 +5,14 @@ import Image from "../../../components/Image";
 import MovieCard from "../../../components/movies/desktop/MovieCard";
 import VoteAverage from "../../../components/voteAverage/VoteAverage";
 import useGetMovieData from "../../../hooks/useGetMovieData";
+import { IMoive } from "../../../interfaces/Movie.interface";
 
 const MovieDetail = () => {
     const { movieId } = useParams();
 
     const { data } = useGetMovieData(`movie/${movieId}`);
 
-    if (!data) return;
+    if (!data) return <></>;
     const {
         backdrop_path,
         poster_path,
@@ -20,7 +21,7 @@ const MovieDetail = () => {
         overview,
         release_date,
         vote_average,
-    } = data;
+    }: IMoive = data;
 
     return (
         <div className="page-container-right p-2 ">
@@ -97,12 +98,18 @@ const MovieDetail = () => {
     );
 };
 
+interface ICast {
+    id?: string | number;
+    profile_path?: string;
+    name?: string;
+}
+
 const MovieCredits = () => {
     const { movieId } = useParams();
     const { data } = useGetMovieData(`movie/${movieId}/credits`);
-    if (!data || !data.cast || data.cast.length <= 0) return;
+    if (!data || !data.cast || data.cast.length <= 0) return <></>;
 
-    const { cast } = data;
+    const { cast }: { cast: ICast[] } = data;
 
     return (
         <>
@@ -138,7 +145,7 @@ const MovieVideos = () => {
         <div className="py-10 mt-10">
             <h2 className="text-center text-3xl mb-10 font-bold">Trailers</h2>
 
-            {results.slice(0, 3).map((item) => (
+            {results.slice(0, 3).map((item: any) => (
                 <div key={item.id} className="w-full mt-10">
                     <h3 className="font-bold text-xl mb-5">{item.name}</h3>
                     <div className="w-full aspect-video">
@@ -166,7 +173,7 @@ const MovieSimilar = () => {
 
     if (!data || !data.results || data.results.length <= 0) return null;
 
-    const { results: movies } = data;
+    const { results: movies }: { results: IMoive[] } = data;
 
     return (
         <div className="mt-10">

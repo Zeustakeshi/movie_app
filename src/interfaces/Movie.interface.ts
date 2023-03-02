@@ -7,6 +7,8 @@ export interface IMoive {
     first_air_date: string;
     vote_average: number;
     id: number;
+    genres?: any[];
+    overview?: string;
 }
 
 export interface IMovieCard {
