@@ -1,0 +1,6 @@
+export const API_KEY = "1a5c4195d358f72fdbec913b288dd9e8";
+export const API_KEY_FIREBASE = "AIzaSyDJMgEGcMTirAqWvpp60Wo5RR4lgK4y2wA";
+export const APP_ID_FIREBASE = "1:811266396220:web:cc304e8969af1e27aa7339";
+export const PROJECT_ID_FIREBASE = "movie-app-af5c7";
+export const MEASUREMENT_ID_FIREBASE = "G-BT8SFWWW2H";
+export const MESSAGINGSENDER_ID_FIREBASE = "811266396220";
